@@ -31,7 +31,7 @@ const LoginPage = () => {
       const redirectUrl = new URLSearchParams(window.location.search).get('callbackUrl') || '/dashboard';
       router.push(redirectUrl);
     } else {
-      setError(result.error);
+      setError('Invalid email or password')
     }
   };
 

@@ -69,8 +69,8 @@ export default NextAuth({
   ],
   session: {
     jwt: true,
-    maxAge: 15 * 60, // 15 minutes
-    updateAge: 10 * 60, // 10 minutes
+    maxAge: 7 * 24 * 60 * 60, // 7 hari dalam detik
+    // updateAge: 1 * 60, // x menit dalam detik
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -86,7 +86,15 @@ export default NextAuth({
         };
       }
 
-      if (Date.now() / 1000 < token.expiresAt) {
+      // if (Date.now() / 1000 < token.expiresAt) {
+      //   return token;
+      // }
+
+      // Tentukan waktu buffer sebelum token kedaluwarsa (misalnya 60 detik)
+      const shouldRefreshTime = Date.now() / 1000 + 30;
+
+      // Jika waktu saat ini kurang dari waktu kedaluwarsa token dikurangi waktu buffer, token tidak perlu diperbarui
+      if (token.expiresAt && Date.now() / 1000 < token.expiresAt - shouldRefreshTime) {
         return token;
       }
 

@@ -14,7 +14,7 @@ const withAuth = (WrappedComponent, allowedRoles) => {
       if (!loading) {
         if (!session) {
           console.log('No session, redirecting to login...');
-          router.replace(`/auth/login?callbackUrl=${encodeURIComponent(router.asPath)}`);
+          router.replace(`/auth/login`);
         } else if (session && allowedRoles && !allowedRoles.includes(session.user.role)) {
           console.log(`Unauthorized role: ${session.user.role}, redirecting to 403...`);
           router.replace('/errors/403');

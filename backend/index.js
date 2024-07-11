@@ -30,13 +30,13 @@ const users = [
 // Generate access and refresh tokens
 const generateAccessToken = (user) => {
   return jwt.sign({ id: user.id, role: user.role }, process.env.SECRET_KEY, {
-    expiresIn: '2m', // 15 minutes
+    expiresIn: '15m', // 15 minutes
   });
 };
 
 const generateRefreshToken = (user) => {
   return jwt.sign({ id: user.id, role: user.role }, process.env.REFRESH_SECRET_KEY, {
-    expiresIn: '1d', // 7 days
+    expiresIn: '7d', // 7 days
   });
 };
 
@@ -71,7 +71,7 @@ app.post('/api/auth/refresh-token', (req, res) => {
     }
     const accessToken = generateAccessToken(user);
     res.status(200).json({ accessToken });
-    console.log('New accessToken:', accessToken)
+    console.log(Date(), 'New accessToken:', accessToken)
   } catch (err) {
     return res.status(401).json({ message: 'Invalid refresh token' });
   }

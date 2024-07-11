@@ -7,6 +7,8 @@ import axios from 'axios';
 import { getSession } from 'next-auth/react';
 
 const AdminPage = () => {
+
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
