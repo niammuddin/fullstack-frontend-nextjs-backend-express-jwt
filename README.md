@@ -13,6 +13,5 @@ ini menggunakan /app route next-js versi 14
 
 <br>
 <br>
-https://subnet.net.id
 <br>
 https://niamweb.blogspot.com
